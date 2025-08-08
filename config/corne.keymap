@@ -88,7 +88,7 @@
 	            bindings = <
 // ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑      ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑
 // | ESC       |           |           |           |           |           |      |           | :         | (         | )         |           | BSPC      |
-     &kp ESC     &trans      &trans      &trans      &trans      &none              &trans      &kp COLON   &kp LPAR    &kp RPAR    &trans      &kp BSPC
+     &kp ESC     &trans      &trans      &trans      &none       &none              &trans      &kp COLON   &kp LPAR    &kp RPAR    &trans      &kp BSPC
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | SHFT      |           |           |           |           |           |      | _         | =         | [         | ]         | \         | `         |
      &kp LSHFT   &trans      &trans      &trans      &trans      &none              &kp UNDER   &kp EQUAL   &kp LBKT    &kp RBKT    &kp BSLH    &kp GRAVE
@@ -108,13 +108,13 @@
 	            bindings = <
 // ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑      ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑
 // | ESC       |           |           |           |           | BT0       |      |           |           |           |           |           |           |
-     &kp ESC     &trans      &trans      &trans      &trans      BT(0)              &trans      &trans      &trans      &trans      &trans      &trans
+     &kp ESC     &trans      &trans      &trans      &bt BT_CLR  &bt BT_SEL 0       &trans      &trans      &trans      &trans      &trans      &trans
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | SHFT      |           |           |           |           | BT1       |      |           |           |           |           |           |           |
-     &kp LSHFT   &trans      &trans      &trans      &trans      BT(1)              &trans      &trans      &trans      &trans      &trans      &trans
+     &kp LSHFT   &trans      &trans      &trans      &trans      &bt BT_SEL 1       &trans      &trans      &trans      &trans      &trans      &trans
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | CTRL      |           |           |           |           | BT2       |      |           |           |           |           |           |           |
-     &kp LCTRL   &trans      &trans      &trans      &trans      BT(2)              &trans       &trans     &trans      &trans      &trans      &trans
+     &kp LCTRL   &trans      &trans      &trans      &trans      &bt BT_SEL 2       &trans       &trans     &trans      &trans      &trans      &trans
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 //                                     | GUI       |           | SPC       |      | ENT       |           | ALT       |
                                          &kp LGUI    &trans      &kp SPACE          &kp RET     &trans      &kp RALT
