@@ -81,7 +81,7 @@
      &kp DEL     &kp N0     RPI(AMPS,N7) RPI(ASTRK,N8) &kp N9      &trans           &trans      &trans      &trans      &trans      &trans      &kp BSPC
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | SHFT      | 0         | 4 $       | 5 %       | 6 ^       |           |      | LEFT      | DOWN      | UP        | RIGHT     |           |           |
-     &kp LSHFT   &kp N0     RPI(DLLR,N4) RPI(PRCNT,N5) RPI(CARET,N6) &tran          &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans      &trans
+     &kp LSHFT   &kp N0     RPI(DLLR,N4) RPI(PRCNT,N5) RPI(CARET,N6) &trans          &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans      &trans
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | CTRL      | 0         | 1 !       | 2 @       | 3 #       |           |      |           |           |           |           |           | TAB       |
      &kp LCTRL   &kp N0     RPI(EXCL,N1) RPI(AT,N2)   RPI(HASH,N3)  &trans          &trans      &trans      &trans      &trans      &trans      &kp TAB
