@@ -9,10 +9,11 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define MT(kp0, kp1) &mt kp0 kp1 
-#define BT(kp) &mt BTCLR kp 
+#define BT(num) &mt &bt BT_CLR &bt BT_SEL num 
 
 #define HRML(kp0, kp1, kp2, kp3) &mt LSHFT kp0  &mt LALT  kp1  &mt LCTRL kp2  &mt LGUI  kp3
 #define HRMR(kp0, kp1, kp2, kp3) &mt RGUI  kp0  &mt RCTRL kp1  &mt RALT  kp2  &mt RSHFT kp3
+
 #define DEFAULT 0
 #define NUM     1
 #define SYM     2
@@ -70,7 +71,7 @@
      &kp DEL     &kp N0     MT(AMPS,N7) MT(ASTRK,N8) &kp N9      &trans             &trans      &trans      &trans      &trans      &trans      &kp BSPC
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | SHFT      | 0         | 4 $       | 5 %       | 6 ^       |           |      | LEFT      | DOWN      | UP        | RIGHT     |           |           |
-     &kp LSHFT   &kp N0     MT(DLLR,N4) MT(PRCNT,N5)MT(CARET,N6) &trans             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans      &trans
+     &kp LSHFT   &kp N0     MT(DLLR,N4) MT(PRCNT,N5) MT(CARET,N6) &trans            &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans      &trans
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | CTRL      | 0         | 1 !       | 2 @       | 3 #       |           |      |           |           |           |           |           | TAB       |
      &kp LCTRL   &kp N0     MT(EXCL,N1) MT(AT,N2)   MT(HASH,N3)  &trans             &trans      &trans      &trans      &trans      &trans      &kp TAB
@@ -90,7 +91,7 @@
      &kp ESC     &trans      &trans      &trans      &trans      &none              &trans      &kp COLON   &kp LPAR    &kp RPAR    &trans      &kp BSPC
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | SHFT      |           |           |           |           |           |      | _         | =         | [         | ]         | \         | `         |
-     &kp LSHFT   &trans      &trans      &trans      &trans      &none              &kp UNDER   &kp EQUAL    &kp LBKT    &kp RBKT    &kp BSLH    &kp GRAVE
+     &kp LSHFT   &trans      &trans      &trans      &trans      &none              &kp UNDER   &kp EQUAL   &kp LBKT    &kp RBKT    &kp BSLH    &kp GRAVE
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | CTRL      |           |           |           |           |           |      | -         | +         | {         | }         | PIPE      | ~         |
      &kp LCTRL   &trans      &trans      &trans      &trans      &none              &kp MINUS   &kp PLUS    &kp LBRC    &kp RBRC    &kp PIPE    &kp TILDE
@@ -104,16 +105,16 @@
 
             bt_and_media_layer {
                 display-name = "media";
-	            bindings = <        
+	            bindings = <
 // ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑      ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑
-// | ESC       |           |           |           |           | BT1       |      |           |           |           |           |           | BSPC      |
-     &kp ESC     &trans      &trans      &trans      &trans      BT(BT1)            &trans      &trans      &trans      &trans      &trans       &kp BSPC
+// | ESC       |           |           |           |           | BT0       |      |           |           |           |           |           |           |
+     &kp ESC     &trans      &trans      &trans      &trans      BT(0)              &trans      &trans      &trans      &trans      &trans      &trans
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
-// | SHFT      |           |           |           |           | BT2       |      |           |           |           |           |           |           |
-     &kp LSHFT   &trans      &trans      &trans      &trans      BT(BT2)            &trans      &trans      &trans      &trans      &trans      &kp SQT
+// | SHFT      |           |           |           |           | BT1       |      |           |           |           |           |           |           |
+     &kp LSHFT   &trans      &trans      &trans      &trans      BT(1)              &trans      &trans      &trans      &trans      &trans      &trans
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
-// | CTRL      |           |           |           |           | BT3       |      |           |           |           |           |           | TAB       |
-     &kp LCTRL   &trans      &trans      &trans      &trans      BT(BT3)            &trans       &trans     &trans      &trans      &trans      &kp TAB
+// | CTRL      |           |           |           |           | BT2       |      |           |           |           |           |           |           |
+     &kp LCTRL   &trans      &trans      &trans      &trans      BT(2)              &trans       &trans     &trans      &trans      &trans      &trans
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 //                                     | GUI       |           | SPC       |      | ENT       |           | ALT       |
                                          &kp LGUI    &trans      &kp SPACE          &kp RET     &trans      &kp RALT
