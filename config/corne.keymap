@@ -8,71 +8,162 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define HRML(kp0, kp1, kp2, kp3) &mt LSHFT kp0  &mt LALT kp1   &mt LCTRL kp2  &mt LGUI kp3
-#define HRMR(kp0, kp1, kp2, kp3) &mt RGUI  kp0  &mt RCTRL kp1  &mt RALT  kp2  &mt RSHFT kp3 
+#define MT(kp0, kp1) &mt kp0 kp1 
+#define BT(kp) &mt BTCLR kp 
+
+#define HRML(kp0, kp1, kp2, kp3) &mt LSHFT kp0  &mt LALT  kp1  &mt LCTRL kp2  &mt LGUI  kp3
+#define HRMR(kp0, kp1, kp2, kp3) &mt RGUI  kp0  &mt RCTRL kp1  &mt RALT  kp2  &mt RSHFT kp3
+#define DEFAULT 0
+#define NUM     1
+#define SYM     2
+#define MEDIA   3
+
 
 / {
+        conditional_layers {
+            compatible = "zmk,conditional-layers";
+            tri_layer {
+                if-layers = <NUM SYM>;
+                then-layer = <MEDIA>;
+            };
+        };
+
         behaviors {
-                        mt: mod_tap {
-                                compatible = "zmk,behavior-hold-tap";
-                                #binding-cells = <2>;
-                                flavor = "tap-preferred";
-                                tapping-term-ms = <220>;
-                                quick-tap-ms = <150>;
-                                bindings = <&kp>, <&kp>;
-                                display-name = "Mod-Tap";
-                };
+            mt: mod_tap {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                flavor = "tap-preferred";
+                tapping-term-ms = <200>;
+                quick-tap-ms = <150>;
+                bindings = <&kp>, <&kp>;
+                display-name = "Mod-Tap";
+            };
         };
 
         keymap {
-                compatible = "zmk,keymap";
+            compatible = "zmk,keymap";
 
-                default_layer {
-                        display-name = "qwerty";
-	                bindings = <        
+            default_layer {
+                display-name = "qwerty";
+	            bindings = <
 // ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑      ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑
 // | ESC       | Q         | W         | E         | R         | T         |      | Y         | U         | I         | O         | P         | BSPC      |
-     &kp ESC    &kp Q        &kp W       &kp E       &kp R       &kp T              &kp Y       &kp U       &kp I       &kp O       &kp P       &kp BSPC
+     &kp ESC     &kp Q       &kp W       &kp E       &kp R       &kp T              &kp Y       &kp U       &kp I       &kp O       &kp P       &kp BSPC
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | SHFT      | A         | S         | D         | F         | G         |      | H         | J         | K         | L         | ;         | '         |
      &kp LSHFT   HRML(A,         S,          D,          F)      &kp G              &kp H       HRMR(J,         K,          L,          SEMI)   &kp SQT
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 // | CTRL      | Z         | X         | C         | V         | B         |      | N         | M         | ,         | .         | /         | TAB       |
-     &kp LCTRL  &kp Z        &kp X       &kp C       &kp V       &kp B              &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp TAB
+     &kp LCTRL   &kp Z       &kp X       &kp C       &kp V       &kp B              &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp TAB
 // ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
 //                                     | GUI       | LWR       | SPC       |      | ENT       | RSE       | ALT       |
                                          &kp LGUI    &mo 1       &kp SPACE          &kp RET     &mo 2       &kp RALT
 //                                     ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙      ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙
+                >;
+            };
+
+            lower_layer {
+                display-name = "num";
+	            bindings = <
+// ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑      ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑
+// | DEL       | 0         | 7 &       | 8 *       | 9         |           |      |           |           |           |           |           | BSPC      |
+     &kp DEL     &kp N0     MT(AMPS,N7) MT(ASTRK,N8) &kp N9      &trans             &trans      &trans      &trans      &trans      &trans      &kp BSPC
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+// | SHFT      | 0         | 4 $       | 5 %       | 6 ^       |           |      | LEFT      | DOWN      | UP        | RIGHT     |           |           |
+     &kp LSHFT   &kp N0     MT(DLLR,N4) MT(PRCNT,N5)MT(CARET,N6) &trans             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans      &trans
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+// | CTRL      | 0         | 1 !       | 2 @       | 3 #       |           |      |           |           |           |           |           | TAB       |
+     &kp LCTRL   &kp N0     MT(EXCL,N1) MT(AT,N2)   MT(HASH,N3)  &trans             &trans      &trans      &trans      &trans      &trans      &kp TAB
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+//                                     | GUI       |           | SPC       |      | ENT       |           | ALT       |
+                                         &kp LGUI    &trans      &kp SPACE          &kp RET     &trans      &kp RALT
+//                                     ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙      ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙
+
+                >;
+            };
+
+            raise_layer {
+                display-name = "sym";
+	            bindings = <
+// ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑      ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑
+// | ESC       |           |           |           |           |           |      |           | :         | (         | )         |           | BSPC      |
+     &kp ESC     &trans      &trans      &trans      &trans      &none              &trans      &kp COLON   &kp LPAR    &kp RPAR    &trans      &kp BSPC
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+// | SHFT      |           |           |           |           |           |      | _         | =         | [         | ]         | \         | `         |
+     &kp LSHFT   &trans      &trans      &trans      &trans      &none              &kp UNDER   &kp EQUAL    &kp LBKT    &kp RBKT    &kp BSLH    &kp GRAVE
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+// | CTRL      |           |           |           |           |           |      | -         | +         | {         | }         | PIPE      | ~         |
+     &kp LCTRL   &trans      &trans      &trans      &trans      &none              &kp MINUS   &kp PLUS    &kp LBRC    &kp RBRC    &kp PIPE    &kp TILDE
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+//                                     | GUI       |           | SPC       |      | ENT       |           | ALT       |
+                                         &kp LGUI    &trans      &kp SPACE          &kp RET     &trans      &kp RALT
+//                                     ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙      ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙
+                >;
+            };
 
 
-                        >;
-                };
-                lower_layer {
+            bt_and_media_layer {
+                display-name = "media";
+	            bindings = <        
+// ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑      ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑
+// | ESC       |           |           |           |           | BT1       |      |           |           |           |           |           | BSPC      |
+     &kp ESC     &trans      &trans      &trans      &trans      BT(BT1)            &trans      &trans      &trans      &trans      &trans       &kp BSPC
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+// | SHFT      |           |           |           |           | BT2       |      |           |           |           |           |           |           |
+     &kp LSHFT   &trans      &trans      &trans      &trans      BT(BT2)            &trans      &trans      &trans      &trans      &trans      &kp SQT
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+// | CTRL      |           |           |           |           | BT3       |      |           |           |           |           |           | TAB       |
+     &kp LCTRL   &trans      &trans      &trans      &trans      BT(BT3)            &trans       &trans     &trans      &trans      &trans      &kp TAB
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+//                                     | GUI       |           | SPC       |      | ENT       |           | ALT       |
+                                         &kp LGUI    &trans      &kp SPACE          &kp RET     &trans      &kp RALT
+//                                     ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙      ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙
+
+
+                >;
+            };
+        };
+};
+
+//                lower_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | DEL  |
+// |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | DEL  |
 // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
 // | CTRL |     |     |     |     |     |   |     |     |     |     |     | TAB  |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp DEL
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LCTRL  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &kp TAB
-                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
-                        >;
-                };
+//                        bindings = <
+//   &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp DEL
+//   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+//   &kp LCTRL  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &kp TAB
+//                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+//                        >;
+//                };
 
-                raise_layer {
+//                raise_layer {
 // -----------------------------------------------------------------------------------------
 // |  ESC |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
 // | SHFT |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
 // | CTRL |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  ESC  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
-        };
-};
+//                        bindings = <
+//   &kp  ESC  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
+//   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
+//   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
+//                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+//                        >;
+//                };
+
+// Layer template
+// ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑      ┍━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┯━━━━━━━━━━━┑
+// | ESC       |           |           |           |           |           |      |           |           |           |           |           | BSPC      |
+//     &kp ESC     &trans      &trans      &trans      &trans      &trans             &trans      &trans      &trans      &trans      &trans       &kp BSPC
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+// | SHFT      |           |           |           |           |           |      |           |           |           |           |           |           |
+//     &kp LSHFT   &trans      &trans      &trans      &trans      &trans             &trans      &trans      &trans      &trans      &trans      &kp SQT
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+// | CTRL      |           |           |           |           |           |      |           |           |           |           |           | TAB       |
+//     &kp LCTRL   &trans      &trans      &trans      &trans      &trans             &trans       &trans     &trans      &trans      &trans      &kp TAB
+// ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥      ┝━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┿━━━━━━━━━━━┥
+//                                     | GUI       |           | SPC       |      | ENT       |           | ALT       |
+//                                         &kp LGUI    &trans      &kp SPACE          &kp RET     &trans      &kp RALT
+//                                     ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙      ┕━━━━━━━━━━━┷━━━━━━━━━━━┷━━━━━━━━━━━┙
