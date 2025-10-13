@@ -92,7 +92,7 @@ ZMK_HOLD_TAP(hmr,
             td_eq_walrus: tap_dance_equal_walrus {
                 compatible = "zmk,behavior-tap-dance";
                 #binding-cells = <0>;
-                tapping-term-ms = <200>;
+                tapping-term-ms = <150>;
                 bindings = <&kp EQUAL>, <&walrus>;
             };
         };
@@ -124,13 +124,13 @@ ZMK_HOLD_TAP(hmr,
 	            bindings = <
 // ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮      ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
 // | DEL          | 0            | 7 &          | 8 *          | 9            |              |      |              |              |              |              |              | BSPC         |
-     &kp DEL        &kp N0         RPI(AMPS,N7)   RPI(ASTRK,N8)  &kp N9         ___                   &kp HOME      &kp PG_DN      &kp PG_UP       &kp END        ___            &kp BSPC
+     &kp DEL        &kp N0         &kp N7         &kp N8         &kp N9         ___                   &kp HOME       &kp PG_DN      &kp PG_UP      &kp END        ___            &kp BSPC
 // ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤      ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
 // | SHFT         | 0            | 4 $          | 5 %          | 6 ^          |              |      | LEFT         | DOWN         | UP           | RIGHT        |              |              |
-     &kp LSHFT      &kp N0         RPI(DLLR,N4)   RPI(PRCNT,N5)  RPI(CARET,N6)  ___                   &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT      ___            ___
+     &kp LSHFT      &kp N0         &kp N4         &kp N5         &kp N6         ___                   &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT      ___            ___
 // ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤      ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
 // | CTRL         | 0            | 1 !          | 2 @          | 3 #          |              |      |              |              |              |              |              | TAB          |
-     &kp LCTRL      &kp N0         RPI(EXCL,N1)   RPI(AT,N2)     RPI(HASH,N3)   ___                   &kp HOME       &kp PG_DN      &kp PG_UP      &kp END        ___            &kp TAB
+     &kp LCTRL      &kp N0         &kp N1         &kp N2         &kp N3         ___                   &kp HOME       &kp PG_DN      &kp PG_UP      &kp END        ___            &kp TAB
 // ╰──────────────┴──────────────┴──────────────┼──────────────┼──────────────┼──────────────┤      ├──────────────┼──────────────┼──────────────┼──────────────┴──────────────┴──────────────╯
 //                                              | GUI          |              | SPC          |      | ENT          |              | ALT          |
                                                   &kp LGUI       ___            &kp SPACE             &kp RET        ___            &kp RALT
@@ -143,14 +143,14 @@ ZMK_HOLD_TAP(hmr,
                 display-name = "sym";
 	            bindings = <
 // ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮      ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
-// | ESC          |              |              |              |              |              |      |              |              | (            | )            |              | BSPC         |
-     &kp ESC        ___            ___            ___            ___            &none                 ___           ___             &kp LPAR       &kp RPAR       ___            &kp BSPC
+// | ESC          | F11          | F12          | F13          | F14          | F15          |      |              |              | (            | )            |              | BSPC         |
+     &kp ESC        &kp F11        &kp F12        &kp F13        &kp F14        &kp F15               ___           ___             &kp LPAR       &kp RPAR       ___            &kp BSPC
 // ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤      ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
-// | SHFT         |              |              |              |              |              |      | _            | =            | [            | ]            | \            | `            |
-     &kp LSHFT      ___            ___            ___            ___            &none                 &kp UNDER      &td_eq_walrus  &kp LBKT       &kp RBKT       &kp BSLH       &kp GRAVE
+// | SHFT         | F6           | F7           | F8           | F9           | F10          |      | -            | =            | [            | ]            | \            | `            |
+     &kp LSHFT      &kp F6         &kp F7         &kp F8         &kp F9         &kp F10               &kp MINUS      &td_eq_walrus  &kp LBKT       &kp RBKT       &kp BSLH       &kp GRAVE
 // ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤      ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
-// | CTRL         |              |              |              |              |              |      | -            | +            | {            | }            | PIPE         | ~            |
-     &kp LCTRL      ___            ___            ___            ___            &none                 &kp MINUS      &kp PLUS       &kp LBRC       &kp RBRC       &kp PIPE       &kp TILDE
+// | CTRL         | F1           | F2           | F3           | F4           | F5           |      | _            | +            | {            | }            | PIPE         | ~            |
+     &kp LCTRL      &kp F1         &kp F2         &kp F3         &kp F4         &kp F5                &kp UNDER      &kp PLUS       &kp LBRC       &kp RBRC       &kp PIPE       &kp TILDE
 // ╰──────────────┴──────────────┴──────────────┼──────────────┼──────────────┼──────────────┤      ├──────────────┼──────────────┼──────────────┼──────────────┴──────────────┴──────────────╯
 //                                              | GUI          |              | SPC          |      | ENT          |              | ALT          |
                                                   &kp LGUI       ___            &kp SPACE             &kp RET        ___            &kp RALT
