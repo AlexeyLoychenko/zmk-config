@@ -129,8 +129,8 @@ ZMK_HOLD_TAP(hmr,
 // | TAB          | 0            | 4 $          | 5 %          | 6 ^          |              |      | LEFT         | DOWN         | UP           | RIGHT        |              |              |
      &kp TAB        &kp N0         &kp N4         &kp N5         &kp N6         ___                   &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT      ___            ___
 // ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤      ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
-// | CTRL         | 0            | 1 !          | 2 @          | 3 #          |              |      |              |              |              |              |              | DEL          |
-     &kp LCTRL      &kp N0         &kp N1         &kp N2         &kp N3         ___                   &kp HOME       &kp PG_DN      &kp PG_UP      &kp END        ___            &kp DEL
+// | CTRL         | 0            | 1 !          | 2 @          | 3 #          |              |      |              | CTRL+LEFT    | CTRL+RIGHT   |              |              | DEL          |
+     &kp LCTRL      &kp N0         &kp N1         &kp N2         &kp N3         ___                   &kp HOME       &kp LC(LEFT)   &kp LC(RIGHT)  &kp END        ___            &kp DEL
 // ╰──────────────┴──────────────┴──────────────┼──────────────┼──────────────┼──────────────┤      ├──────────────┼──────────────┼──────────────┼──────────────┴──────────────┴──────────────╯
 //                                              | SHFT         |              | SPC          |      | ENT          |              | SHFT         |
                                                   &kp LSHFT      ___            &kp SPACE             &kp RET        ___            &kp RSHFT
